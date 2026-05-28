@@ -26,7 +26,7 @@ class _MapScreenState extends State<MapScreen> {
       'name': 'Caio',
       'location': 'Isso Lanpred',
       'status': 'RESOLVIDO',
-      'color': Color(0xFF10B981),
+      'color': const Color(0xFF10B981),
     },
   ];
 
@@ -36,7 +36,7 @@ class _MapScreenState extends State<MapScreen> {
       backgroundColor: AppTheme.white,
       body: Column(
         children: [
-          AppHeader(),
+          const AppHeader(),
           Expanded(
             child: CustomScrollView(
               slivers: [
@@ -136,7 +136,7 @@ class _MapScreenState extends State<MapScreen> {
                                       width: 18,
                                       height: 18,
                                       decoration: BoxDecoration(
-                                        color: selected ? Colors.white.withValues(alpha: 0.25) : AppTheme.textLight.withValues(alpha: 0.15),
+                                        color: selected ? Colors.white.withOpacity(0.25) : AppTheme.textLight.withOpacity(0.15),
                                         borderRadius: BorderRadius.circular(100),
                                       ),
                                       child: Center(
@@ -168,7 +168,7 @@ class _MapScreenState extends State<MapScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: const Color(0xFFE2E8F0)),
-                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 12)],
+                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 12)],
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
@@ -187,9 +187,9 @@ class _MapScreenState extends State<MapScreen> {
                             bottom: 50,
                             child: Column(
                               children: [
-                                _MapButton(icon: Icons.add),
+                                const _MapButton(icon: Icons.add),
                                 const SizedBox(height: 4),
-                                _MapButton(icon: Icons.remove),
+                                const _MapButton(icon: Icons.remove),
                               ],
                             ),
                           ),
@@ -203,7 +203,7 @@ class _MapScreenState extends State<MapScreen> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
-                                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 8)],
+                                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 8)],
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -228,7 +228,7 @@ class _MapScreenState extends State<MapScreen> {
                                     color: const Color(0xFF10B981),
                                     shape: BoxShape.circle,
                                     border: Border.all(color: Colors.white, width: 2),
-                                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 4)],
+                                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 4)],
                                   ),
                                 ),
                               ],
@@ -283,7 +283,7 @@ class _MapButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(6),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 4)],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4)],
       ),
       child: Icon(icon, size: 18, color: AppTheme.textDark),
     );
@@ -321,7 +321,7 @@ class _OccurrenceCard extends StatelessWidget {
         color: AppTheme.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFFE2E8F0)),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 8)],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8)],
       ),
       child: Row(
         children: [
@@ -397,15 +397,15 @@ class _RoadsPainter extends CustomPainter {
     final textPainter = TextPainter(textDirection: TextDirection.ltr);
     final style = const TextStyle(color: Color(0xFF667777), fontSize: 8);
     final cities = [
-      MapEntry('Campinas', Offset(size.width * 0.5, size.height * 0.12)),
-      MapEntry('São Paulo', Offset(size.width * 0.55, size.height * 0.65)),
-      MapEntry('Sorocaba', Offset(size.width * 0.1, size.height * 0.68)),
-      MapEntry('Santos', Offset(size.width * 0.45, size.height * 0.85)),
+      const MapEntry('Campinas', Offset(0.5, 0.12)),
+      const MapEntry('São Paulo', Offset(0.55, 0.65)),
+      const MapEntry('Sorocaba', Offset(0.1, 0.68)),
+      const MapEntry('Santos', Offset(0.45, 0.85)),
     ];
     for (final city in cities) {
       textPainter.text = TextSpan(text: city.key, style: style);
       textPainter.layout();
-      textPainter.paint(canvas, city.value);
+      textPainter.paint(canvas, Offset(city.value.dx * size.width, city.value.dy * size.height));
     }
   }
 

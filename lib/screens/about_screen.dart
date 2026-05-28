@@ -53,7 +53,7 @@ class AboutScreen extends StatelessWidget {
                   Text(
                     'Unindo tecnologia, cidadania e gestão pública para transformar o futuro das cidades brasileiras.',
                     style: GoogleFonts.inter(
-                      color: Colors.white.withValues(alpha: 0.75),
+                      color: Colors.white.withOpacity(0.75),
                       fontSize: 14,
                       height: 1.6,
                     ),
@@ -69,7 +69,7 @@ class AboutScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _SectionBadge(
+                  const _SectionBadge(
                     icon: Icons.language,
                     label: 'NOSSA ESSÊNCIA',
                   ),
@@ -144,7 +144,7 @@ class AboutScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(40),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.08),
+                              color: Colors.black.withOpacity(0.08),
                               blurRadius: 30,
                               offset: const Offset(0, 15),
                             ),
@@ -281,7 +281,7 @@ class AboutScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF0F172A).withValues(alpha: 0.15),
+                    color: const Color(0xFF0F172A).withOpacity(0.15),
                     blurRadius: 25,
                     offset: const Offset(0, 10),
                   ),
@@ -308,9 +308,9 @@ class AboutScreen extends StatelessWidget {
                   // Translúcido Card
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.05),
+                      color: Colors.white.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 1.5),
+                      border: Border.all(color: Colors.white.withOpacity(0.1), width: 1.5),
                     ),
                     padding: const EdgeInsets.all(24),
                     child: Column(
@@ -372,7 +372,7 @@ class AboutScreen extends StatelessWidget {
                           style: TextStyle(
                             color: AppTheme.primaryBlue,
                             decoration: TextDecoration.underline,
-                            decorationColor: AppTheme.primaryBlue.withValues(alpha: 0.3),
+                            decorationColor: AppTheme.primaryBlue.withOpacity(0.3),
                             decorationThickness: 2,
                           ),
                         ),
@@ -449,7 +449,7 @@ class _SectionBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: AppTheme.primaryBlue.withValues(alpha: 0.05),
+        color: AppTheme.primaryBlue.withOpacity(0.05),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Row(
@@ -488,7 +488,7 @@ class _StatCard extends StatelessWidget {
           border: Border.all(color: const Color(0xFFF1F5F9), width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.02),
+              color: Colors.black.withOpacity(0.02),
               blurRadius: 15,
               offset: const Offset(0, 5),
             ),
@@ -545,7 +545,7 @@ class _DnaCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
+            color: Colors.black.withOpacity(0.03),
             blurRadius: 20,
             offset: const Offset(0, 5),
           ),
@@ -559,7 +559,7 @@ class _DnaCard extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.05),
+              color: color.withOpacity(0.05),
               borderRadius: BorderRadius.circular(16),
             ),
             child: Icon(icon, color: color, size: 22),
@@ -613,13 +613,13 @@ class _ProgressBar extends StatelessWidget {
             Text(
               label,
               style: GoogleFonts.inter(
-                color: Colors.white.withValues(alpha: 0.75),
+                color: Colors.white.withOpacity(0.75),
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              '${(value * 100).toInt()}%',
+              '\${(value * 100).toInt()}%',
               style: GoogleFonts.inter(
                 color: Colors.white,
                 fontSize: 12,
@@ -633,7 +633,7 @@ class _ProgressBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           child: LinearProgressIndicator(
             value: value,
-            backgroundColor: Colors.white.withValues(alpha: 0.1),
+            backgroundColor: Colors.white.withOpacity(0.1),
             valueColor: AlwaysStoppedAnimation<Color>(color),
             minHeight: 6,
           ),

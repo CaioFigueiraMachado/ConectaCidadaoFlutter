@@ -66,7 +66,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> with SingleTickerProvid
                   Text(
                     'Aproveite parcerias e benefícios exclusivos para você e seu negócio crescerem ainda mais.',
                     style: GoogleFonts.inter(
-                      color: Colors.white.withValues(alpha: 0.75),
+                      color: Colors.white.withOpacity(0.75),
                       fontSize: 14,
                       height: 1.6,
                       fontWeight: FontWeight.w500,
@@ -261,7 +261,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> with SingleTickerProvid
                             Text(
                               'Conectamos empresas que acreditam no poder da cidade com projetos que transformam vidas.',
                               style: GoogleFonts.inter(
-                                color: Colors.white.withValues(alpha: 0.5),
+                                color: Colors.white.withOpacity(0.5),
                                 fontSize: 10,
                                 height: 1.5,
                                 fontWeight: FontWeight.w500,
@@ -273,17 +273,17 @@ class _BenefitsScreenState extends State<BenefitsScreen> with SingleTickerProvid
                       const Spacer(flex: 1),
                       Expanded(
                         flex: 3,
-                        child: _FooterColumn(
+                        child: const _FooterColumn(
                           title: 'Links Rápidos',
-                          items: const ['Início', 'Serviços', 'Suporte'],
+                          items: ['Início', 'Serviços', 'Suporte'],
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         flex: 3,
-                        child: _FooterColumn(
+                        child: const _FooterColumn(
                           title: 'Contato',
-                          items: const ['contato@\nconectacidadao\n.com.br'],
+                          items: ['contato@\nconectacidadao\n.com.br'],
                         ),
                       ),
                     ],
@@ -295,7 +295,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> with SingleTickerProvid
                     child: Text(
                       '© 2026 Conecta Cidadão. Todos os direitos reservados.',
                       style: GoogleFonts.inter(
-                        color: Colors.white.withValues(alpha: 0.35),
+                        color: Colors.white.withOpacity(0.35),
                         fontSize: 10,
                         fontWeight: FontWeight.w500,
                       ),
@@ -321,7 +321,7 @@ class _SectionBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: AppTheme.primaryBlue.withValues(alpha: 0.05),
+        color: AppTheme.primaryBlue.withOpacity(0.05),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
@@ -350,9 +350,9 @@ class _CircularShortcut extends StatelessWidget {
           width: 56,
           height: 56,
           decoration: BoxDecoration(
-            color: AppTheme.primaryBlue.withValues(alpha: 0.05),
+            color: AppTheme.primaryBlue.withOpacity(0.05),
             shape: BoxShape.circle,
-            border: Border.all(color: AppTheme.primaryBlue.withValues(alpha: 0.1), width: 1.0),
+            border: Border.all(color: AppTheme.primaryBlue.withOpacity(0.1), width: 1.0),
           ),
           child: Icon(icon, color: AppTheme.primaryBlue, size: 22),
         ),
@@ -394,7 +394,7 @@ class _BenefitCard extends StatelessWidget {
         border: Border.all(color: const Color(0xFFF1F5F9), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.02),
+            color: Colors.black.withOpacity(0.02),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -422,7 +422,7 @@ class _BenefitCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: AppTheme.darkNavy.withValues(alpha: 0.8),
+                        color: AppTheme.darkNavy.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
@@ -531,7 +531,7 @@ class _FooterColumn extends StatelessWidget {
               child: Text(
                 item,
                 style: GoogleFonts.inter(
-                  color: Colors.white.withValues(alpha: 0.45),
+                  color: Colors.white.withOpacity(0.45),
                   fontSize: 10,
                   height: 1.4,
                   fontWeight: FontWeight.w600,

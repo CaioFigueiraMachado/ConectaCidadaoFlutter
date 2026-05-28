@@ -92,7 +92,7 @@ class ProblemsScreen extends StatelessWidget {
                   Text(
                     'Entenda por que a falta de conexão entre cidadãos e governo é o maior obstáculo para o desenvolvimento das nossas cidades.',
                     style: GoogleFonts.inter(
-                      color: Colors.white.withValues(alpha: 0.75),
+                      color: Colors.white.withOpacity(0.75),
                       fontSize: 14,
                       height: 1.6,
                     ),
@@ -235,7 +235,7 @@ class ProblemsScreen extends StatelessWidget {
                           style: TextStyle(
                             color: AppTheme.primaryBlue,
                             decoration: TextDecoration.underline,
-                            decorationColor: AppTheme.primaryBlue.withValues(alpha: 0.3),
+                            decorationColor: AppTheme.primaryBlue.withOpacity(0.3),
                             decorationThickness: 2,
                           ),
                         ),
@@ -311,7 +311,7 @@ class _SectionBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: AppTheme.primaryBlue.withValues(alpha: 0.05),
+        color: AppTheme.primaryBlue.withOpacity(0.05),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Row(
@@ -350,7 +350,7 @@ class _StatHighlightCard extends StatelessWidget {
           border: Border.all(color: const Color(0xFFF1F5F9), width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.02),
+              color: Colors.black.withOpacity(0.02),
               blurRadius: 15,
               offset: const Offset(0, 5),
             ),
@@ -406,7 +406,7 @@ class _ProblemCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
+            color: Colors.black.withOpacity(0.03),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -420,7 +420,7 @@ class _ProblemCard extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.08),
+              color: color.withOpacity(0.08),
               borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(icon, color: color, size: 20),

@@ -115,8 +115,8 @@ class _HeroSection extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    const Color(0xFF0F172A).withValues(alpha: 0.65),
-                    const Color(0xFF0F172A).withValues(alpha: 0.85),
+                    const Color(0xFF0F172A).withOpacity(0.65),
+                    const Color(0xFF0F172A).withOpacity(0.85),
                     const Color(0xFF0F172A),
                   ],
                 ),
@@ -160,7 +160,7 @@ class _HeroSection extends StatelessWidget {
                       Text(
                         'A revolução na gestão urbana começa aqui. Reporte ocorrências, ganhe recompensas e transforme o futuro do seu bairro em tempo real.',
                         style: GoogleFonts.inter(
-                          color: Colors.white.withValues(alpha: 0.85),
+                          color: Colors.white.withOpacity(0.85),
                           fontSize: 14,
                           height: 1.6,
                           fontWeight: FontWeight.w500,
@@ -203,7 +203,7 @@ class _HeroSection extends StatelessWidget {
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.white,
-                            side: BorderSide(color: Colors.white.withValues(alpha: 0.2), width: 1.5),
+                            side: BorderSide(color: Colors.white.withOpacity(0.2), width: 1.5),
                             padding: const EdgeInsets.symmetric(vertical: 18),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(100),
@@ -297,7 +297,7 @@ class _FeatureCard extends StatelessWidget {
             width: 56,
             height: 56,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.08),
+              color: color.withOpacity(0.08),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: color, size: 24),
@@ -345,7 +345,7 @@ class _MonitoringSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(40),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF0F172A).withValues(alpha: 0.15),
+            color: const Color(0xFF0F172A).withOpacity(0.15),
             blurRadius: 25,
             offset: const Offset(0, 10),
           ),
@@ -359,9 +359,9 @@ class _MonitoringSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: AppTheme.primaryBlue.withValues(alpha: 0.15),
+              color: AppTheme.primaryBlue.withOpacity(0.15),
               borderRadius: BorderRadius.circular(100),
-              border: Border.all(color: AppTheme.primaryBlue.withValues(alpha: 0.3), width: 1.0),
+              border: Border.all(color: AppTheme.primaryBlue.withOpacity(0.3), width: 1.0),
             ),
             child: Text(
               'REAL-TIME MONITORING',
@@ -392,7 +392,7 @@ class _MonitoringSection extends StatelessWidget {
           Text(
             'Acesse o mapa interativo para ver todas as demandas da sua região e a taxa de resolução global. Transparência total na palma da sua mão.',
             style: GoogleFonts.inter(
-              color: Colors.white.withValues(alpha: 0.7),
+              color: Colors.white.withOpacity(0.7),
               fontSize: 13,
               height: 1.6,
               fontWeight: FontWeight.w500,
@@ -405,7 +405,7 @@ class _MonitoringSection extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.08), width: 1.5),
+              border: Border.all(color: Colors.white.withOpacity(0.08), width: 1.5),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
@@ -415,7 +415,7 @@ class _MonitoringSection extends StatelessWidget {
                     child: Image.network(
                       'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1200',
                       fit: BoxFit.cover,
-                      color: const Color(0xFF0F172A).withValues(alpha: 0.4),
+                      color: const Color(0xFF0F172A).withOpacity(0.4),
                       colorBlendMode: BlendMode.dstATop,
                     ),
                   ),
@@ -551,14 +551,14 @@ class _GlowPinsPainter extends CustomPainter {
         pin,
         14,
         Paint()
-          ..color = AppTheme.primaryBlue.withValues(alpha: 0.15)
+          ..color = AppTheme.primaryBlue.withOpacity(0.15)
           ..style = PaintingStyle.fill,
       );
       canvas.drawCircle(
         pin,
         8,
         Paint()
-          ..color = AppTheme.primaryBlue.withValues(alpha: 0.35)
+          ..color = AppTheme.primaryBlue.withOpacity(0.35)
           ..style = PaintingStyle.fill,
       );
       // Center solid dot
