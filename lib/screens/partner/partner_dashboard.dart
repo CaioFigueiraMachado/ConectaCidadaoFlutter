@@ -90,10 +90,21 @@ class _PartnerDashboardState extends State<PartnerDashboard> {
           icon: const Icon(Icons.menu, color: AppTheme.textDark),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
-        title: Text('Painel da Empresa', style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 18)),
+        title: Row(
+          children: [
+            Image.asset('assets/logo.png', width: 24, height: 24, errorBuilder: (c,e,s) => const Icon(Icons.location_city, color: AppTheme.primaryBlue, size: 24)),
+            const SizedBox(width: 8),
+            Text('Painel da Empresa', style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 16)),
+          ],
+        ),
         actions: [
           IconButton(onPressed: _fetchPartnerData, icon: const Icon(Icons.refresh, color: AppTheme.textDark)),
-          const CircleAvatar(radius: 16, backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=partner')),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_none, color: AppTheme.textDark)),
+          const SizedBox(width: 8),
+          InkWell(
+            onTap: () => _scaffoldKey.currentState?.openDrawer(),
+            child: const CircleAvatar(radius: 14, backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=partner')),
+          ),
           const SizedBox(width: 16),
         ],
       ),
@@ -253,7 +264,7 @@ class _PartnerDashboardState extends State<PartnerDashboard> {
               ),
             )
           else
-            ..._recentRedemptions.map((r) => _buildRedemptionItem(r)).toList(),
+            ..._recentRedemptions.map((r) => _buildRedemptionItem(r)),
         ],
       ),
     );

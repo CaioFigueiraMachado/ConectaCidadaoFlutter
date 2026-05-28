@@ -25,7 +25,7 @@ class AppHeader extends StatelessWidget {
           child: Row(
             children: [
               // Logo
-              Container(
+              Image.asset('assets/logo.png', width: 30, height: 30, errorBuilder: (c,e,s) => Container(
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class AppHeader extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Icon(Icons.location_city, color: Colors.white, size: 16),
-              ),
+              )),
               const SizedBox(width: 8),
               RichText(
                 text: TextSpan(

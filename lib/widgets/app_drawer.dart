@@ -23,6 +23,9 @@ class AppDrawer extends StatelessWidget {
             currentAccountPicture: const CircleAvatar(
               backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=user'),
             ),
+            otherAccountsPictures: [
+              Image.asset('assets/logo.png', width: 32, height: 32, errorBuilder: (c,e,s) => const Icon(Icons.location_city, color: AppTheme.primaryBlue, size: 24)),
+            ],
             accountName: Text(user?.userMetadata?['full_name'] ?? 'Usuário', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
             accountEmail: Text(user?.email ?? '', style: GoogleFonts.inter(fontSize: 12, color: Colors.white70)),
           ),

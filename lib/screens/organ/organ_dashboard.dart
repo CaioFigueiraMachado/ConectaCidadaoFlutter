@@ -67,10 +67,21 @@ class _OrganDashboardState extends State<OrganDashboard> {
           icon: const Icon(Icons.menu, color: AppTheme.textDark),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
-        title: Text('Painel Operacional', style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 18)),
+        title: Row(
+          children: [
+            Image.asset('assets/logo.png', width: 24, height: 24, errorBuilder: (c,e,s) => const Icon(Icons.location_city, color: AppTheme.primaryBlue, size: 24)),
+            const SizedBox(width: 8),
+            Text('Painel Operacional', style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 16)),
+          ],
+        ),
         actions: [
           IconButton(onPressed: _fetchData, icon: const Icon(Icons.refresh, color: AppTheme.textDark)),
-          const CircleAvatar(radius: 16, backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=organ')),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_none, color: AppTheme.textDark)),
+          const SizedBox(width: 8),
+          InkWell(
+            onTap: () => _scaffoldKey.currentState?.openDrawer(),
+            child: const CircleAvatar(radius: 14, backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=organ')),
+          ),
           const SizedBox(width: 16),
         ],
       ),
@@ -203,7 +214,7 @@ class _OrganDashboardState extends State<OrganDashboard> {
             ],
           ),
           const SizedBox(height: 24),
-          ..._demands.map((d) => _buildDemandItem(d)).toList(),
+          ..._demands.map((d) => _buildDemandItem(d)),
         ],
       ),
     );
@@ -219,7 +230,7 @@ class _OrganDashboardState extends State<OrganDashboard> {
         onTap: () => _showStatusDialog(d),
         child: Row(
           children: [
-            Text('#${d['id']}', style: GoogleFonts.inter(color: Colors.grey, fontSize: 12)),
+            Text('#${d["id"]}', style: GoogleFonts.inter(color: Colors.grey, fontSize: 12)),
             const SizedBox(width: 12),
             Expanded(
               flex: 2,
@@ -252,7 +263,7 @@ class _OrganDashboardState extends State<OrganDashboard> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Atualizar Status - #${d['id']}'),
+        title: Text('Atualizar Status - #${d["id"]}'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

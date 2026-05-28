@@ -4,6 +4,7 @@ import 'package:conecta_cidadao/theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:conecta_cidadao/screens/citizen/create_report_screen.dart';
 import 'package:conecta_cidadao/screens/citizen/benefits_store_screen.dart';
+import 'package:conecta_cidadao/widgets/app_drawer.dart';
 
 class CitizenDashboard extends StatefulWidget {
   const CitizenDashboard({super.key});
@@ -14,6 +15,7 @@ class CitizenDashboard extends StatefulWidget {
 
 class _CitizenDashboardState extends State<CitizenDashboard> {
   final _supabase = Supabase.instance.client;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   Map<String, dynamic>? _userData;
   List<Map<String, dynamic>> _recentReports = [];
   bool _isLoading = true;
@@ -51,7 +53,7 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
         });
       }
     } catch (e) {
-      debugPrint('Erro ao buscar dados do cidadão: \$e');
+      debugPrint('Erro ao buscar dados do cidadão: $e');
       if (mounted) setState(() => _isLoading = false);
     }
   }
@@ -66,14 +68,19 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
     final points = _userData?['pontos'] ?? 0;
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: const Color(0xFFF8FAFC),
+      drawer: const AppDrawer(role: 'cidadao'),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.menu, color: AppTheme.textDark),
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: AppTheme.textDark),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        ),
         title: Row(
           children: [
-            const Icon(Icons.location_city, color: AppTheme.primaryBlue),
+            Image.asset('assets/logo.png', width: 24, height: 24, errorBuilder: (c,e,s) => const Icon(Icons.location_city, color: AppTheme.primaryBlue, size: 24)),
             const SizedBox(width: 8),
             Text('Conecta Cidadão', style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 16)),
           ],
@@ -83,10 +90,14 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const BenefitsStoreScreen()));
           }, icon: const Icon(Icons.shopping_bag_outlined, color: AppTheme.textDark)),
           IconButton(onPressed: _fetchData, icon: const Icon(Icons.refresh, color: AppTheme.textDark)),
-          IconButton(onPressed: () async => await _supabase.auth.signOut(), icon: const Icon(Icons.logout, color: AppTheme.textDark)),
-          CircleAvatar(
-            radius: 16, 
-            backgroundImage: NetworkImage(_userData?['profilepic'] ?? 'https://i.pravatar.cc/150?u=user')
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_none, color: AppTheme.textDark)),
+          const SizedBox(width: 8),
+          InkWell(
+            onTap: () => _scaffoldKey.currentState?.openDrawer(),
+            child: CircleAvatar(
+              radius: 14, 
+              backgroundImage: NetworkImage(_userData?['profilepic'] ?? 'https://i.pravatar.cc/150?u=user')
+            ),
           ),
           const SizedBox(width: 16),
         ],
@@ -109,7 +120,7 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Olá, \$name!',
+              'Olá, $name!',
               style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w800, color: AppTheme.textDark),
             ),
             Text(
@@ -134,7 +145,7 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
             if (_recentReports.isEmpty)
               const Text('Nenhuma ocorrência registrada por você.')
             else
-              ..._recentReports.map((report) => _buildHistoryItem(report)).toList(),
+              ..._recentReports.map((report) => _buildHistoryItem(report)),
           ],
         ),
       ),
@@ -181,8 +192,8 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('\$points PTS', style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-              Text('META: \${meta.toInt()} PTS', style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+              Text('$points PTS', style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+              Text('META: ${meta.toInt()} PTS', style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
             ],
           ),
           const SizedBox(height: 8),
@@ -197,7 +208,9 @@ class _CitizenDashboardState extends State<CitizenDashboard> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const CreateReportScreen())).then((_) => _fetchData());
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppTheme.primaryBlue,

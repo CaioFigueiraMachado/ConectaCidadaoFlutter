@@ -53,7 +53,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
             .limit(5);
         _recentHistory = List<Map<String, dynamic>>.from(history);
       } catch (e) {
-        debugPrint('Erro em reports: \$e');
+        debugPrint('Erro em reports: $e');
       }
 
       try {
@@ -63,11 +63,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
         final partners = await _supabase.from('users').select('id').eq('role', 'parceiro');
         _activePartners = partners.length;
       } catch (e) {
-        debugPrint('Erro em users: \$e');
+        debugPrint('Erro em users: $e');
       }
 
     } catch (e) {
-      debugPrint('Erro geral stats: \$e');
+      debugPrint('Erro geral stats: $e');
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -117,6 +117,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 
   Widget _buildHeader() {
+    final user = _supabase.auth.currentUser;
     return SliverAppBar(
       backgroundColor: Colors.white,
       floating: true,
@@ -125,9 +126,15 @@ class _AdminDashboardState extends State<AdminDashboard> {
         icon: const Icon(Icons.menu, color: AppTheme.textDark),
         onPressed: () => _scaffoldKey.currentState?.openDrawer(),
       ),
-      title: Text(
-        'Conecta Cidadão',
-        style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 16),
+      title: Row(
+        children: [
+          Image.asset('assets/logo.png', width: 24, height: 24, errorBuilder: (c,e,s) => const Icon(Icons.location_city, color: AppTheme.primaryBlue, size: 24)),
+          const SizedBox(width: 8),
+          Text(
+            'Conecta Cidadão',
+            style: GoogleFonts.inter(color: AppTheme.textDark, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ],
       ),
       actions: [
         IconButton(
@@ -137,9 +144,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
         IconButton(onPressed: _fetchStats, icon: const Icon(Icons.refresh, color: AppTheme.textDark)),
         IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_none, color: AppTheme.textDark)),
         const SizedBox(width: 8),
-        const CircleAvatar(
-          radius: 14,
-          backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=admin'),
+        InkWell(
+          onTap: () => _scaffoldKey.currentState?.openDrawer(),
+          child: const CircleAvatar(
+            radius: 14,
+            backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=admin'),
+          ),
         ),
         const SizedBox(width: 16),
       ],
@@ -158,7 +168,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
         _StatCard(title: 'TOTAL OCORRÊNCIAS', value: _totalReports.toString(), icon: Icons.description_outlined, color: Colors.blue),
         _StatCard(title: 'USUÁRIOS ATIVOS', value: _activeUsers.toString(), icon: Icons.people_outline, color: Colors.green),
         _StatCard(title: 'PARCERIAS ATIVAS', value: _activePartners.toString(), icon: Icons.handshake_outlined, color: Colors.purple),
-        _StatCard(title: 'TAXA DE SUCESSO', value: '\${_successRate.toInt()}%', icon: Icons.check_circle_outline, color: Colors.orange),
+        _StatCard(title: 'TAXA DE SUCESSO', value: '${_successRate.toInt()}%', icon: Icons.check_circle_outline, color: Colors.orange),
       ],
     );
   }
@@ -194,7 +204,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: _buildDemandBar(e.key.toUpperCase(), pct),
               );
-            }).toList(),
+            }),
         ],
       ),
     );
@@ -208,7 +218,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(label, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
-            Text('\${(percentage * 100).toInt()}%', style: GoogleFonts.inter(fontSize: 12)),
+            Text('${(percentage * 100).toInt()}%', style: GoogleFonts.inter(fontSize: 12)),
           ],
         ),
         const SizedBox(height: 8),
@@ -248,7 +258,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
             ..._recentHistory.map((item) => Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: _buildHistoryItem(item['titulo'] ?? 'Sem título', item['data'] ?? item['created_at']?.substring(0,10) ?? ''),
-            )).toList(),
+            )),
         ],
       ),
     );

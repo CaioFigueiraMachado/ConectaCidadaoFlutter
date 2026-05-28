@@ -50,7 +50,7 @@ class _BenefitsStoreScreenState extends State<BenefitsStoreScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Confirmar Resgate'),
-        content: Text('Deseja trocar ${benefit['pontos']} pontos por ${benefit['nome']}?'),
+        content: Text('Deseja trocar ${benefit["pontos"]} pontos por ${benefit["nome"]}?'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('CANCELAR')),
           ElevatedButton(onPressed: () => Navigator.pop(context, true), child: const Text('CONFIRMAR')),
@@ -134,7 +134,7 @@ class _BenefitsStoreScreenState extends State<BenefitsStoreScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('${b['pontos']} pts', style: GoogleFonts.inter(fontWeight: FontWeight.w900, color: AppTheme.textDark)),
+                    Text('${b["pontos"]} pts', style: GoogleFonts.inter(fontWeight: FontWeight.w900, color: AppTheme.textDark)),
                     InkWell(
                       onTap: () => _redeem(b),
                       child: Container(

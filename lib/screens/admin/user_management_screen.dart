@@ -28,7 +28,7 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
       final data = await _supabase.from('users').select().order('name');
       _users = List<Map<String, dynamic>>.from(data);
     } catch (e) {
-      debugPrint('Erro ao buscar usuários: \$e');
+      debugPrint('Erro ao buscar usuários: $e');
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -58,7 +58,7 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
       _fetchUsers();
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Usuário removido')));
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao excluir: \$e')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao excluir: $e')));
     }
   }
 
@@ -88,9 +88,9 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
     try {
       await _supabase.from('users').update({'role': newRole}).eq('id', id);
       _fetchUsers();
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cargo atualizado para \$newRole')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cargo atualizado para $newRole')));
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao atualizar: \$e')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erro ao atualizar: $e')));
     }
   }
 
@@ -169,11 +169,11 @@ class _UserManagementScreenState extends State<UserManagementScreen> {
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(color: AppTheme.primaryBlue.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(4)),
+                      decoration: BoxDecoration(color: AppTheme.primaryBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(4)),
                       child: Text(role, style: GoogleFonts.inter(color: AppTheme.primaryBlue, fontSize: 9, fontWeight: FontWeight.bold)),
                     ),
                     const SizedBox(width: 8),
-                    Text('\$points PTS', style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey[600])),
+                    Text('$points PTS', style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.grey[600])),
                   ],
                 )
               ],
